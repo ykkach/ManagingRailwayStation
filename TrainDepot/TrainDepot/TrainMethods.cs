@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TrainDepot
 {
-    partial class CTrain
+    partial class Train
     {
         public static int trainNumber { get; private set; }
         public struct SStation
@@ -29,11 +29,11 @@ namespace TrainDepot
             //is there a point in repeatedly adding stations one by one?
             for (int i = 0; i < stationsQuantity; ++i)
             {
-                SStation sStation = new SStation { stationName = stationNames[i], stationID = Array.IndexOf(stationNames, stationNames[i]) };
+                SStation sStation =
+                    new SStation { stationName = stationNames[i], stationID = Array.IndexOf(stationNames, stationNames[i]) };
                 stations.Add(sStation);
             }
         }
-
 
         // Implement access to initial/final station
         // or give access directly to field "stations" 
