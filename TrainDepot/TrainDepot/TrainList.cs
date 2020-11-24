@@ -9,11 +9,13 @@ namespace TrainDepot
     class TrainList
     {
         private static readonly TrainList instance = new TrainList();
-        public List<Train> trainList { get; private set; }
+        public LinkedList<Train> trainList { get; private set; }
 
         public TrainList()
         {
+            trainList = new LinkedList<Train>();
             //initialize and fill with Trains
+            //read data from file and parse
         }
 
         public static TrainList getinstance()
