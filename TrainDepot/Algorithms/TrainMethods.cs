@@ -6,44 +6,56 @@ using System.Threading.Tasks;
 
 namespace BL
 {
+
     public partial class Train : IComparable<Train>
     {
-        static int numOfSecs = 86400;
-        public static int trainNumber { get; private set; }
-        private static int timeOfArrival; // in seconds
-        private static int timeOfDeparture; // in seconds
-        private static List<Station> stations;
-        private static double avgSpeed;
-        public static void getAverageSpeed()
+        private List<Station> stations;
+        public int trainNumber;
+        private double avgSpeed;
+        public int getSetTrainNumber
         {
-            int time = 0;
-            int distance = 0;
-            for (int i = 0; i < stations.Count; i++)
+            private set { trainNumber = value; }
+            get { return trainNumber; }
+        }
+        public List<Station> getSetStations
+        {
+            private set { stations = value; }
+            get { return stations; }
+        }
+
+        public void getAverageSpeed()
+        {
+            double[] speedOnEach = new double[stations.Count];    
+            for (int i = 1; i < stations.Count; i++)
             {
-                if (timeOfArrival < timeOfDeparture)
-                    time += timeOfArrival + (numOfSecs - timeOfDeparture);
-                else
-                    time += timeOfArrival - timeOfDeparture;
-                for (int k = 0; k < stations.Count; k++)
-                    distance += stations[k].kilometersFromPrevious;
-                avgSpeed = distance / time;
+                speedOnEach[i - 1] += stations[i].kilometersFromPrevious;
+                if (stations[i].timeOfArrival < stations[i - 1].timeOfDeparture){
+                    speedOnEach[i - 1] /= (stations[i].timeOfArrival + (GlobalVariables.NumOfSecondsInDay - stations[i - 1].timeOfDeparture))/GlobalVariables.NumOfSecondsInHour;
+                }
+                else{
+                    speedOnEach[i - 1] /= (stations[i].timeOfArrival - stations[i - 1].timeOfDeparture)/GlobalVariables.NumOfSecondsInHour;
+                }
+                foreach (double sp in speedOnEach)
+                    avgSpeed += sp;
+                this.avgSpeed /= speedOnEach.Length;
             }
         }
 
-        private void addStations(string[] stationNames, int[] kilometers, int[] times)
+        private void addStations(List<string> stationNames, List<int> kilometers, List<int> timesOfArrival, List<int> timesOfDeparture)
         {
-            for (int i = 0; i < stationNames.Length; ++i)
+            // check for empty array
+
+            for (int i = 0; i < stationNames.Count; ++i)
             {
                 Station sStation =
-                    new Station(stationNames[i], Array.IndexOf(stationNames, stationNames[i]), kilometers[i]);
+                    new Station(stationNames[i], Array.IndexOf(stationNames.ToArray(), stationNames[i]), kilometers[i], timesOfArrival[i], timesOfDeparture[i]);
                 stations.Add(sStation);
             }
-            timeOfArrival = times[1];
-            timeOfDeparture = times[0];
         }
 
         /*
-        private void generateStations (int* stationsPlaces, int size, QRandomGenerator &generator)
+         How to generate a list of
+        private void generateStations (int* stationsPlaces, int size, someRandomGenerator &generator)
         {
             for (int i = 0; i < size; ++i)
             {
@@ -56,18 +68,23 @@ namespace BL
 
         public int CompareTo(Train other)
         {
-            //here can be custom return(for example if we compare speed -
-            //-1 for this condition, if somthing else 1, etc
-            
             return this.avgSpeed.CompareTo(other.avgSpeed);
         }
 
-        public static bool operator >=(Train T1, Train T2) => T1.avgSpeed > T2.avgSpeed ? true : false;
-        public static bool operator <=(Train T1, Train T2) => T1.avgSpeed < T2.avgSpeed ? true : false;
+        public static bool operator >=(Train T1, Train T2) => String.Compare(T1.stations.First().stationName, T2.stations.First().stationName) < 0 ? true : false;
+        public static bool operator <=(Train T1, Train T2) => String.Compare(T1.stations.First().stationName, T2.stations.First().stationName) > 0 ? true : false;
 
         // Implement access to initial/final station
         // or give access directly to field "stations" 
 
+    }
+
+    public static class GlobalVariables
+    {
+        public static int NumOfSecondsInDay = 86400;
+        public static int NumOfSecondsInHour = 3600;
+        public static string fileNameToOpen;
+        public static string fileNameToSave;
     }
 
 }

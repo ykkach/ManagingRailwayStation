@@ -14,11 +14,11 @@ namespace BL
         {
             trainNumber = number;
         }
-        public Train(int number, string[] stationNames, int[] kilometers, int[] times)
+        public Train(int number, List<string> stationNames, List<int> kilometers, List<int> timesOfArrival, List<int> timesOfDeparture)
         {
             trainNumber = number;
-            stations = new List<Station>(stationNames.Length);
-            addStations(stationNames, kilometers, times);
+            stations = new List<Station>(stationNames.Count);
+            addStations(stationNames, kilometers, timesOfArrival, timesOfDeparture);
         }
         public Train(Train train)
         {

@@ -17,7 +17,7 @@ namespace TrainDepot
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new WorkForm());
+            Application.Run(new StartForm());
         }
     }
 }
