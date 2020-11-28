@@ -4,30 +4,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-NUM_OF_SECS_IN_
 namespace BL
 {
     public partial class Train : IComparable<Train>
     {
+        static int numOfSecs = 86400;
         public static int trainNumber { get; private set; }
         private static int timeOfArrival; // in seconds
         private static int timeOfDeparture; // in seconds
         private static List<Station> stations;
-        private int avgSpeed;
-        //public int currentStationID { get; private set; }
+        private static double avgSpeed;
         public static void getAverageSpeed()
         {
-            int avgSpeed;
-            int time;
+            int time = 0;
+            int distance = 0;
             for (int i = 0; i < stations.Count; i++)
             {
                 if (timeOfArrival < timeOfDeparture)
-                {
-                    
-                }
-
+                    time += timeOfArrival + (numOfSecs - timeOfDeparture);
+                else
+                    time += timeOfArrival - timeOfDeparture;
+                for (int k = 0; k < stations.Count; k++)
+                    distance += stations[k].kilometersFromPrevious;
+                avgSpeed = distance / time;
             }
-            //Count speed with cStation fields
         }
 
         private void addStations(string[] stationNames, int[] kilometers, int[] times)
