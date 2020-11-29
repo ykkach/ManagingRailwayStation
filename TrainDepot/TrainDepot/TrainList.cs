@@ -71,7 +71,7 @@ namespace TrainDepot
             else
             {
                 var parsedData = data.Split(',')
-                    .Select(s => Regex.Split(s, "[^\\w]+"))
+                    .Select(s => s.Split(' ',':'))//Regex.Split(s, "[^\\w]+"))
                     .ToArray();
                 for (int i = 0; i < parsedData.GetLength(0); i++)
                 {
