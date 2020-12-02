@@ -13,26 +13,32 @@ using BL;
 
 namespace TrainDepot
 {
-    class TrainList
+    public class TrainList
     {
         private static readonly TrainList instance = new TrainList();
-        public List<Train> trainList { get; private set; } //change accessibility modifier to private?
+        public List<Train> trainList
+        { 
+            get;
+            private set; 
+        }
 
-        public TrainList()
+        private TrainList()
         {
             trainList = new List<Train>();
         }
-        private void addTrain(Train train) => trainList.Add(train);
 
         public static TrainList getList()
         {
             return instance;
         }
 
-        public static void addToDataGrid(ref DataGridView trainTable, TrainList list)
+        private void addTrain(Train train) => trainList.Add(train);
+
+        public void clearList()
         {
-            //add list to form
+            trainList.Clear();
         }
+
         public void sortBySpeed()
         {
             MergeSort mergeSort = new MergeSort();
@@ -51,9 +57,51 @@ namespace TrainDepot
         {
             int numberOfSpecificTrains = 0;
             foreach (Train train in trainList)
-                if (((Train)train).stations.Where(st => String.Compare(st.stationName, station) == 0).Count() > 0)
+                if (((Train)train).getSetStations.Where(st => 
+                String.Compare(st.stationName, station) == 0).Count() > 0)
                     numberOfSpecificTrains++;
             return numberOfSpecificTrains;
+        }
+
+        public int parseDataSingleRecord(string data)
+        {
+            if (String.IsNullOrEmpty(data))
+            {
+                return -1;
+            }
+            else 
+            {
+                int ltrainNumber = 0;
+                List<string> lstations = new List<string>();
+                List<int> lkilometers = new List<int>();
+                List<int> larrivals = new List<int>();
+                List<int> ldepartures = new List<int>();
+
+                var parsedData = data.Split(' ');
+                
+                foreach (string tr in parsedData)
+                    if (String.IsNullOrEmpty(tr))
+                    {
+                        return -1;
+                    }
+
+                ltrainNumber = Convert.ToInt32(parsedData[0]);
+                for (int k = 0; k < parsedData.Length - 1;)
+                {
+                    lstations.Add(parsedData[++k]);
+                    lkilometers.Add(Convert.ToInt32(parsedData[++k]));
+                    larrivals.Add(Convert.ToInt32(parsedData[++k]) * GlobalVariables.NumOfMinutesInHour + Convert.ToInt32(parsedData[++k]));
+                    ldepartures.Add(Convert.ToInt32(parsedData[++k]) * GlobalVariables.NumOfMinutesInHour + Convert.ToInt32(parsedData[++k]));
+                }
+                Train train = new Train(ltrainNumber, lstations, lkilometers, larrivals, ldepartures);
+                this.addTrain(train);
+                lstations.Clear();
+                lkilometers.Clear();
+                larrivals.Clear();
+                ldepartures.Clear();
+            }
+
+            return 0;
         }
 
         public int parseDataFromFile(string data)
@@ -70,15 +118,18 @@ namespace TrainDepot
             }
             else
             {
+                
                 var parsedData = data.Split(',')
-                    .Select(s => s.Split(' ',':'))//Regex.Split(s, "[^\\w]+"))
-                    .ToArray();
-                for (int i = 0; i < parsedData.GetLength(0); i++)
+                   .Select(s => Regex.Split(s, "[^\\w]+"))
+                   .ToArray();
+
+                for (int i = 0; i < parsedData.Length; i++)
                 {
                     if (String.IsNullOrEmpty(parsedData[i][0]))
                         return -1;
                     ltrainNumber = Convert.ToInt32(parsedData[i][0]);
-                    for (int k = 1; k < parsedData.GetLength(1); k += 6)
+
+                    for (int k = 0; k < parsedData[0].Length - 1;) 
                     {
                         if (String.IsNullOrEmpty(parsedData[i][k]))
                         {
@@ -86,18 +137,60 @@ namespace TrainDepot
                         }
                         else
                         {
-                            lstations.Add(parsedData[i][k]);
-                            lkilometers.Add(Convert.ToInt32(parsedData[i][k + 1]));
-                            larrivals.Add(Convert.ToInt32(parsedData[i][k + 2]) + Convert.ToInt32(parsedData[i][k + 3]));
-                            ldepartures.Add(Convert.ToInt32(parsedData[i][k + 4]) + Convert.ToInt32(parsedData[i][k + 5]));
-
-                            Train train = new Train(ltrainNumber, lstations, lkilometers, larrivals, ldepartures);
-                            TrainList.getList().addTrain(train);
+                            lstations.Add(parsedData[i][++k]);
+                            lkilometers.Add(Convert.ToInt32(parsedData[i][++k]));
+                            larrivals.Add(Convert.ToInt32(parsedData[i][++k])* GlobalVariables.NumOfMinutesInHour + Convert.ToInt32(parsedData[i][++k]));
+                            ldepartures.Add(Convert.ToInt32(parsedData[i][++k])* GlobalVariables.NumOfMinutesInHour + Convert.ToInt32(parsedData[i][++k]));
                         }
                     }
+                    Train train = new Train(ltrainNumber, lstations, lkilometers, larrivals, ldepartures);
+                    this.addTrain(train);
+                    lstations.Clear();
+                    lkilometers.Clear();
+                    larrivals.Clear();
+                    ldepartures.Clear();
                 }
             }
             return 0;
+        }
+        public void addToDataGrid(ref DataGridView trainTable)
+        {
+            while (trainTable.Rows.Count > 0)
+                trainTable.Rows.Remove(trainTable.Rows[0]);
+            //trainTable.Rows.Clear();
+
+            foreach (Train train in trainList)
+            {
+                trainTable.Rows.Add(
+                    new object[]
+                    {
+                        Convert.ToString(train.getSetTrainNumber),
+                       train.getSetStations[0].stationName +  ' ' +
+                       Convert.ToString(train.getSetStations[0].kilometersFromPrevious) + ' ' +
+                       Convert.ToString(train.getSetStations[0].timeOfArrival/60) + ':' + Convert.ToString(train.getSetStations[0].timeOfArrival%60) + '/' +
+                       Convert.ToString(train.getSetStations[0].timeOfDeparture/60) + ':' + Convert.ToString(train.getSetStations[0].timeOfDeparture%60),
+
+                       train.getSetStations[1].stationName +  ' ' +
+                       Convert.ToString(train.getSetStations[1].kilometersFromPrevious) + ' ' +
+                       Convert.ToString(train.getSetStations[1].timeOfArrival/60) + ':' + Convert.ToString(train.getSetStations[1].timeOfArrival%60) + '/' +
+                       Convert.ToString(train.getSetStations[1].timeOfDeparture/60) + ':' + Convert.ToString(train.getSetStations[1].timeOfDeparture%60),
+
+                       train.getSetStations[2].stationName +  ' ' +
+                       Convert.ToString(train.getSetStations[2].kilometersFromPrevious) + ' ' +
+                       Convert.ToString(train.getSetStations[2].timeOfArrival/60) + ':' + Convert.ToString(train.getSetStations[2].timeOfArrival%60) + '/' +
+                       Convert.ToString(train.getSetStations[2].timeOfDeparture/60) + ':' + Convert.ToString(train.getSetStations[2].timeOfDeparture%60),
+
+                       train.getSetStations[3].stationName +  ' ' +
+                       Convert.ToString(train.getSetStations[3].kilometersFromPrevious) + ' ' +
+                       Convert.ToString(train.getSetStations[3].timeOfArrival/60) + ':' + Convert.ToString(train.getSetStations[3].timeOfArrival%60) + '/' +
+                       Convert.ToString(train.getSetStations[3].timeOfDeparture/60) + ':' + Convert.ToString(train.getSetStations[3].timeOfDeparture%60),
+                       
+                       train.getSetStations[4].stationName +  ' ' +
+                       Convert.ToString(train.getSetStations[4].kilometersFromPrevious) + ' ' +
+                       Convert.ToString(train.getSetStations[4].timeOfArrival/60) + ':' + Convert.ToString(train.getSetStations[4].timeOfArrival%60) + '/' +
+                       Convert.ToString(train.getSetStations[4].timeOfDeparture/60) + ':' + Convert.ToString(train.getSetStations[4].timeOfDeparture%60)
+                    });
+            }
         }
 
         static async void writeToFile(string sLog)

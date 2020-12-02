@@ -1,0 +1,3 @@
+234562 Simba 0 12:35 12:55 Zoe 52 13:34 13:40 Comanche 24 14:05 14:10 Limbergen 33 14:41 14:51,246791
+ HotenSchmitz 0 12:45 13:05 Zoe 19 13:25 13:35 Sequantic 31 14:05 14:10 Liberty 56 15:15 15:30,245273
+ WasserHatt 0 12:45 13:00 Zoe 10 13:20 13:30 Comanche 24 13:55 14:10 Timberland 28 14:45 15:05

@@ -15,7 +15,7 @@ namespace BL
 
         public int kilometersFromPrevious { get; set; }
 
-        public Station(string name, int ID, int km, int departure, int arrival)
+        public Station(string name, int ID, int km, int arrival, int departure)
         {
             this.stationName = name;
             this.stationID = ID;

@@ -10,7 +10,7 @@ namespace BL
     public partial class Train : IComparable<Train>
     {
         private List<Station> stations;
-        public int trainNumber;
+        private int trainNumber;
         private double avgSpeed;
         public int getSetTrainNumber
         {
@@ -19,7 +19,7 @@ namespace BL
         }
         public List<Station> getSetStations
         {
-            private set { stations = value; }
+            set { stations = value; }
             get { return stations; }
         }
 
@@ -30,10 +30,10 @@ namespace BL
             {
                 speedOnEach[i - 1] += stations[i].kilometersFromPrevious;
                 if (stations[i].timeOfArrival < stations[i - 1].timeOfDeparture){
-                    speedOnEach[i - 1] /= (stations[i].timeOfArrival + (GlobalVariables.NumOfSecondsInDay - stations[i - 1].timeOfDeparture))/GlobalVariables.NumOfSecondsInHour;
+                    speedOnEach[i - 1] /= (stations[i].timeOfArrival + (GlobalVariables.NumOfMinutesInDay - stations[i - 1].timeOfDeparture))/GlobalVariables.NumOfMinutesInHour;
                 }
                 else{
-                    speedOnEach[i - 1] /= (stations[i].timeOfArrival - stations[i - 1].timeOfDeparture)/GlobalVariables.NumOfSecondsInHour;
+                    speedOnEach[i - 1] /= (stations[i].timeOfArrival - stations[i - 1].timeOfDeparture)/GlobalVariables.NumOfMinutesInHour;
                 }
                 foreach (double sp in speedOnEach)
                     avgSpeed += sp;
@@ -81,10 +81,11 @@ namespace BL
 
     public static class GlobalVariables
     {
-        public static int NumOfSecondsInDay = 86400;
-        public static int NumOfSecondsInHour = 3600;
+        public static int NumOfMinutesInDay = 1440;
+        public static int NumOfMinutesInHour = 60;
         public static string fileNameToOpen;
         public static string fileNameToSave;
+        public static int systemTableInit = 0;
     }
 
 }

@@ -1,0 +1,14 @@
+C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\TrainDepot\bin\Debug\TrainDepot.exe.config
+C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\TrainDepot\bin\Debug\TrainDepot.exe
+C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\TrainDepot\bin\Debug\TrainDepot.pdb
+C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\TrainDepot\bin\Debug\Algorithms.dll
+C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\TrainDepot\bin\Debug\Algorithms.pdb
+C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\TrainDepot\obj\Debug\TrainDepot.csprojAssemblyReference.cache
+C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\TrainDepot\obj\Debug\TrainDepot.AddTrain.resources
+C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\TrainDepot\obj\Debug\TrainDepot.WorkForm.resources
+C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\TrainDepot\obj\Debug\TrainDepot.Properties.Resources.resources
+C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\TrainDepot\obj\Debug\TrainDepot.csproj.GenerateResource.cache
+C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\TrainDepot\obj\Debug\TrainDepot.csproj.CoreCompileInputs.cache
+C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\TrainDepot\obj\Debug\TrainDepot.csproj.CopyComplete
+C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\TrainDepot\obj\Debug\TrainDepot.exe
+C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\TrainDepot\obj\Debug\TrainDepot.pdb

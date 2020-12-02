@@ -1,0 +1,6 @@
+C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\Algorithms\bin\Debug\Algorithms.dll
+C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\Algorithms\bin\Debug\Algorithms.pdb
+C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\Algorithms\obj\Debug\BL.csprojAssemblyReference.cache
+C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\Algorithms\obj\Debug\BL.csproj.CoreCompileInputs.cache
+C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\Algorithms\obj\Debug\Algorithms.dll
+C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\Algorithms\obj\Debug\Algorithms.pdb

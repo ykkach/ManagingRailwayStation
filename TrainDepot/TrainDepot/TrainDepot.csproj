@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddTrain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddTrain.Designer.cs">
+      <DependentUpon>AddTrain.cs</DependentUpon>
+    </Compile>
     <Compile Include="WorkForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -53,16 +59,10 @@
       <DependentUpon>WorkForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TrainList.cs" />
-    <Compile Include="StartForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="StartForm.Designer.cs">
-      <DependentUpon>StartForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="StartForm.resx">
-      <DependentUpon>StartForm.cs</DependentUpon>
+    <EmbeddedResource Include="AddTrain.resx">
+      <DependentUpon>AddTrain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WorkForm.resx">
       <DependentUpon>WorkForm.cs</DependentUpon>
