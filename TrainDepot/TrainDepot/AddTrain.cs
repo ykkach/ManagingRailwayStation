@@ -26,23 +26,24 @@ namespace TrainDepot
 
         private void Add_Click(object sender, EventArgs e)
         {
-            //
-            //  Check for invalid input
-            //
-
+            if (number.Text == "" ||
+                stName1.Text == "" || stName2.Text == "" || stName3.Text == "" || stName4.Text == "" || stName5.Text == "" ||
+                km1.Text == "" || km2.Text == "" || km3.Text == "" || km4.Text == "" || km5.Text == "")
+            {
+                MessageBox.Show($"Please, fill all fields.");
+                return;
+            }
             data = number.Text + ' ' +
-                stName1.Text + ' ' + km1.Text + ' ' + hours1.GetItemText(hours1.SelectedItem) + ' ' + min1.GetItemText(min1.SelectedItem) + ' ' + hours6.GetItemText(hours6.SelectedItem) + ' ' + min6.GetItemText(min6.SelectedItem) + ' ' +
-                stName2.Text + ' ' + km2.Text + ' ' + hours2.GetItemText(hours2.SelectedItem) + ' ' + min2.GetItemText(min2.SelectedItem) + ' ' + hours7.GetItemText(hours7.SelectedItem) + ' ' + min6.GetItemText(min7.SelectedItem) + ' ' +
-                stName3.Text + ' ' + km3.Text + ' ' + hours3.GetItemText(hours3.SelectedItem) + ' ' + min3.GetItemText(min3.SelectedItem) + ' ' + hours8.GetItemText(hours8.SelectedItem) + ' ' + min6.GetItemText(min8.SelectedItem) + ' ' +
-                stName4.Text + ' ' + km4.Text + ' ' + hours4.GetItemText(hours4.SelectedItem) + ' ' + min4.GetItemText(min4.SelectedItem) + ' ' + hours9.GetItemText(hours9.SelectedItem) + ' ' + min6.GetItemText(min9.SelectedItem) + ' ' +
-                stName5.Text + ' ' + km5.Text + ' ' + hours5.GetItemText(hours5.SelectedItem) + ' ' + min5.GetItemText(min5.SelectedItem) + ' ' + hours10.GetItemText(hours10.SelectedItem) + ' ' + min6.GetItemText(min10.SelectedItem);
-            label1.Text = data;
-            if (parent.trainList.parseDataSingleRecord(data) == 0)
-                MessageBox.Show(ADDING_TRAIN_SUCCESS_MESSAGE);
-            else
+                stName1.Text + ' ' + km1.Text + ' ' + timearr1.Value.ToString("HH:mm").Split(':')[0] + ' ' + timearr1.Value.ToString("HH:mm").Split(':')[1] + ' ' + timedep1.Value.ToString("HH:mm").Split(':')[0] + ' ' + timedep1.Value.ToString("HH:mm").Split(':')[1] + ' ' +
+                stName2.Text + ' ' + km2.Text + ' ' + timearr2.Value.ToString("HH:mm").Split(':')[0] + ' ' + timearr2.Value.ToString("HH:mm").Split(':')[1] + ' ' + timedep2.Value.ToString("HH:mm").Split(':')[0] + ' ' + timedep2.Value.ToString("HH:mm").Split(':')[1] + ' ' +
+                stName3.Text + ' ' + km3.Text + ' ' + timearr3.Value.ToString("HH:mm").Split(':')[0] + ' ' + timearr3.Value.ToString("HH:mm").Split(':')[1] + ' ' + timedep3.Value.ToString("HH:mm").Split(':')[0] + ' ' + timedep3.Value.ToString("HH:mm").Split(':')[1] + ' ' +
+                stName4.Text + ' ' + km4.Text + ' ' + timearr4.Value.ToString("HH:mm").Split(':')[0] + ' ' + timearr4.Value.ToString("HH:mm").Split(':')[1] + ' ' + timedep4.Value.ToString("HH:mm").Split(':')[0] + ' ' + timedep4.Value.ToString("HH:mm").Split(':')[1] + ' ' +
+                stName5.Text + ' ' + km5.Text + ' ' + timearr5.Value.ToString("HH:mm").Split(':')[0] + ' ' + timearr5.Value.ToString("HH:mm").Split(':')[1] + ' ' + timedep5.Value.ToString("HH:mm").Split(':')[0] + ' ' + timedep5.Value.ToString("HH:mm").Split(':')[1];
+            if (parent.trainList.parseDataSingleRecord(data) != 0)
                 MessageBox.Show(ADDING_TRAIN_ERROR_MESSAGE);
             parent.trainList.addToDataGrid(ref trainDataTable);
             this.Close();
         }
+
     }
 }

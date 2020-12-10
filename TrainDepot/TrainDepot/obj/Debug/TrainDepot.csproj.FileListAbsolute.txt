@@ -12,3 +12,6 @@ C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\TrainDepot\obj
 C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\TrainDepot\obj\Debug\TrainDepot.csproj.CopyComplete
 C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\TrainDepot\obj\Debug\TrainDepot.exe
 C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\TrainDepot\obj\Debug\TrainDepot.pdb
+C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\TrainDepot\obj\Debug\TrainDepot.FindByStation.resources
+C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\TrainDepot\obj\Debug\TrainDepot.FindByStationAndArrivalTime.resources
+C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\TrainDepot\obj\Debug\TrainDepot.FindByStationAndDepartureTime.resources

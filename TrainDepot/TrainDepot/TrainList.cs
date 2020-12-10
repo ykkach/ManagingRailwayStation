@@ -16,11 +16,7 @@ namespace TrainDepot
     public class TrainList
     {
         private static readonly TrainList instance = new TrainList();
-        public List<Train> trainList
-        { 
-            get;
-            private set; 
-        }
+        public List<Train> trainList;
 
         private TrainList()
         {
@@ -42,25 +38,49 @@ namespace TrainDepot
         public void sortBySpeed()
         {
             MergeSort mergeSort = new MergeSort();
-            mergeSort.sortBySpeed(trainList);  
-            // mersort list by avgSpeed 
+            trainList = mergeSort.sortBySpeed(trainList);  
         }
 
         public void sortByFStation()
         {
             MergeSort mergeSort = new MergeSort();
-            mergeSort.sortByFStation(trainList); 
-            //mergesort list by initial station
+            trainList = mergeSort.sortByFStation(trainList); 
         }
 
-        public int getNumberOfRoutesWithStation(String station)
+        public void groupByLStation()
         {
-            int numberOfSpecificTrains = 0;
+            MergeSort mergeSort = new MergeSort();
+            trainList = mergeSort.groupByLStation(trainList);
+        }
+
+        public List<int> getTrainsByStationArrival(string station, int timeOfArrival)
+        {
+            List<int> trainNumbers = new List<int>();
+            foreach (Train train in trainList)
+                foreach (Station st in train.getSetStations)
+                    if (st.stationName == station && st.timeOfArrival == timeOfArrival)
+                        trainNumbers.Add(train.getSetTrainNumber);
+            return trainNumbers;
+        }
+
+        public List<int> getTrainsByStationDeparture(string station, int timeOfDeparture)
+        {
+            List<int> trainNumbers = new List<int>();
+            foreach (Train train in trainList)
+                foreach(Station st in train.getSetStations)
+                    if(st.stationName == station && st.timeOfDeparture == timeOfDeparture)
+                        trainNumbers.Add(train.getSetTrainNumber);
+            return trainNumbers;
+        }
+
+        public List<int> getNumberOfRoutesWithStation(String station)
+        {
+            List<int> trainNumbers = new List<int>();
             foreach (Train train in trainList)
                 if (((Train)train).getSetStations.Where(st => 
                 String.Compare(st.stationName, station) == 0).Count() > 0)
-                    numberOfSpecificTrains++;
-            return numberOfSpecificTrains;
+                    trainNumbers.Add(train.getSetTrainNumber);
+            return trainNumbers;
         }
 
         public int parseDataSingleRecord(string data)
@@ -79,11 +99,8 @@ namespace TrainDepot
 
                 var parsedData = data.Split(' ');
                 
-                foreach (string tr in parsedData)
-                    if (String.IsNullOrEmpty(tr))
-                    {
-                        return -1;
-                    }
+                if(checkForInvalidInput(parsedData) != 0)
+                    return -1;
 
                 ltrainNumber = Convert.ToInt32(parsedData[0]);
                 for (int k = 0; k < parsedData.Length - 1;)
@@ -104,6 +121,61 @@ namespace TrainDepot
             return 0;
         }
 
+        public int checkForInvalidInput(string[] data)
+        {
+            foreach (string el in data)
+                if (String.IsNullOrEmpty(el))
+                    return -1;
+            try
+            {
+                var value = int.Parse(data[0]);
+                if (value < 0)
+                    throw new NegativeValuePassedException();
+            }
+            catch (Exception ex) when (
+                ex is FormatException ||
+                ex is ArgumentException ||
+                ex is OverflowException)
+            {
+                return -1;
+            }
+
+            for (int k = 0; k < data.Length-1;)
+            {
+                if (!Regex.IsMatch(data[++k], @"^[a-zA-Z]+$"))
+                    return -1;
+                try
+                {
+                    var value = int.Parse(data[++k]);
+                    if (value < 0)
+                        throw new NegativeValuePassedException();
+                    value = int.Parse(data[++k]);
+                    if (value < 0 || value >= GlobalVariables.numOfHoursInDay)
+                        throw new IncorrectTimeException();
+                    value = int.Parse(data[++k]);
+                    if (value < 0 || value >= GlobalVariables.NumOfMinutesInHour)
+                        throw new IncorrectTimeException();
+                    value = int.Parse(data[++k]);
+                    if (value < 0 || value >= GlobalVariables.numOfHoursInDay)
+                        throw new IncorrectTimeException();
+                    value = int.Parse(data[++k]);
+                    if (value < 0 || value >= GlobalVariables.NumOfMinutesInHour)
+                        throw new IncorrectTimeException();
+                }
+                catch (Exception ex) when (
+                    ex is FormatException ||
+                    ex is ArgumentException ||
+                    ex is OverflowException ||
+                    ex is NegativeValuePassedException ||
+                    ex is IncorrectTimeException)
+
+                {
+                    return -1;
+                }
+            }
+            return 0;
+        }
+
         public int parseDataFromFile(string data)
         {
             int ltrainNumber = 0;
@@ -118,30 +190,22 @@ namespace TrainDepot
             }
             else
             {
-                
                 var parsedData = data.Split(',')
-                   .Select(s => Regex.Split(s, "[^\\w]+"))
+                   .Select(s => s.Split(' ', ':'))
                    .ToArray();
 
                 for (int i = 0; i < parsedData.Length; i++)
                 {
-                    if (String.IsNullOrEmpty(parsedData[i][0]))
+                    if (checkForInvalidInput(parsedData[i]) != 0)
                         return -1;
                     ltrainNumber = Convert.ToInt32(parsedData[i][0]);
 
                     for (int k = 0; k < parsedData[0].Length - 1;) 
                     {
-                        if (String.IsNullOrEmpty(parsedData[i][k]))
-                        {
-                            return -1;
-                        }
-                        else
-                        {
                             lstations.Add(parsedData[i][++k]);
                             lkilometers.Add(Convert.ToInt32(parsedData[i][++k]));
                             larrivals.Add(Convert.ToInt32(parsedData[i][++k])* GlobalVariables.NumOfMinutesInHour + Convert.ToInt32(parsedData[i][++k]));
                             ldepartures.Add(Convert.ToInt32(parsedData[i][++k])* GlobalVariables.NumOfMinutesInHour + Convert.ToInt32(parsedData[i][++k]));
-                        }
                     }
                     Train train = new Train(ltrainNumber, lstations, lkilometers, larrivals, ldepartures);
                     this.addTrain(train);
@@ -157,7 +221,6 @@ namespace TrainDepot
         {
             while (trainTable.Rows.Count > 0)
                 trainTable.Rows.Remove(trainTable.Rows[0]);
-            //trainTable.Rows.Clear();
 
             foreach (Train train in trainList)
             {
@@ -165,51 +228,80 @@ namespace TrainDepot
                     new object[]
                     {
                         Convert.ToString(train.getSetTrainNumber),
-                       train.getSetStations[0].stationName +  ' ' +
-                       Convert.ToString(train.getSetStations[0].kilometersFromPrevious) + ' ' +
-                       Convert.ToString(train.getSetStations[0].timeOfArrival/60) + ':' + Convert.ToString(train.getSetStations[0].timeOfArrival%60) + '/' +
-                       Convert.ToString(train.getSetStations[0].timeOfDeparture/60) + ':' + Convert.ToString(train.getSetStations[0].timeOfDeparture%60),
+                       train.getSetStations[0].stationName +  " | " +
+                       (train.getSetStations[0].timeOfArrival/60).ToString("00") + ':'
+                       + (train.getSetStations[0].timeOfArrival%60).ToString("00") + '-' +
+                       (train.getSetStations[0].timeOfDeparture/60).ToString("00") + ':'
+                       + (train.getSetStations[0].timeOfDeparture%60).ToString("00"),
 
-                       train.getSetStations[1].stationName +  ' ' +
-                       Convert.ToString(train.getSetStations[1].kilometersFromPrevious) + ' ' +
-                       Convert.ToString(train.getSetStations[1].timeOfArrival/60) + ':' + Convert.ToString(train.getSetStations[1].timeOfArrival%60) + '/' +
-                       Convert.ToString(train.getSetStations[1].timeOfDeparture/60) + ':' + Convert.ToString(train.getSetStations[1].timeOfDeparture%60),
+                       Convert.ToString(train.getSetStations[1].kilometersFromPrevious),
 
-                       train.getSetStations[2].stationName +  ' ' +
-                       Convert.ToString(train.getSetStations[2].kilometersFromPrevious) + ' ' +
-                       Convert.ToString(train.getSetStations[2].timeOfArrival/60) + ':' + Convert.ToString(train.getSetStations[2].timeOfArrival%60) + '/' +
-                       Convert.ToString(train.getSetStations[2].timeOfDeparture/60) + ':' + Convert.ToString(train.getSetStations[2].timeOfDeparture%60),
+                       train.getSetStations[1].stationName + " | " +
+                       (train.getSetStations[1].timeOfArrival/60).ToString("00") + ':' 
+                       + (train.getSetStations[1].timeOfArrival%60).ToString("00") + '-' +
+                       (train.getSetStations[1].timeOfDeparture/60).ToString("00") + ':' 
+                       + (train.getSetStations[1].timeOfDeparture%60).ToString("00"),
 
-                       train.getSetStations[3].stationName +  ' ' +
-                       Convert.ToString(train.getSetStations[3].kilometersFromPrevious) + ' ' +
-                       Convert.ToString(train.getSetStations[3].timeOfArrival/60) + ':' + Convert.ToString(train.getSetStations[3].timeOfArrival%60) + '/' +
-                       Convert.ToString(train.getSetStations[3].timeOfDeparture/60) + ':' + Convert.ToString(train.getSetStations[3].timeOfDeparture%60),
-                       
-                       train.getSetStations[4].stationName +  ' ' +
-                       Convert.ToString(train.getSetStations[4].kilometersFromPrevious) + ' ' +
-                       Convert.ToString(train.getSetStations[4].timeOfArrival/60) + ':' + Convert.ToString(train.getSetStations[4].timeOfArrival%60) + '/' +
-                       Convert.ToString(train.getSetStations[4].timeOfDeparture/60) + ':' + Convert.ToString(train.getSetStations[4].timeOfDeparture%60)
+                       Convert.ToString(train.getSetStations[2].kilometersFromPrevious),
+
+                       train.getSetStations[2].stationName + " | " +
+                       (train.getSetStations[2].timeOfArrival/60).ToString("00") + ':' 
+                       + (train.getSetStations[2].timeOfArrival%60).ToString("00") + '-' +
+                       (train.getSetStations[2].timeOfDeparture/60).ToString("00") + ':' 
+                       + (train.getSetStations[2].timeOfDeparture%60).ToString("00"),
+
+                       Convert.ToString(train.getSetStations[3].kilometersFromPrevious),
+
+                       train.getSetStations[3].stationName + " | " +
+                       (train.getSetStations[3].timeOfArrival/60).ToString("00") + ':'
+                       + (train.getSetStations[3].timeOfArrival%60).ToString("00") + '-' +
+                       (train.getSetStations[3].timeOfDeparture/60).ToString("00") + ':'
+                       + (train.getSetStations[3].timeOfDeparture%60).ToString("00"),
+
+                       Convert.ToString(train.getSetStations[4].kilometersFromPrevious),
+
+                       train.getSetStations[4].stationName + " | " +
+                       (train.getSetStations[4].timeOfArrival/60).ToString("00") + ':' 
+                       + (train.getSetStations[4].timeOfArrival%60).ToString("00") + '-' +
+                       (train.getSetStations[4].timeOfDeparture/60).ToString("00") + ':'
+                       + (train.getSetStations[4].timeOfDeparture%60).ToString("00")
                     });
             }
         }
 
-        static async void writeToFile(string sLog)
+        private string formDataForWritingToFile()
         {
-            //string pathToFile = @"C:\\....";
-            //DirectoryInfo dirInfo = new DirectoryInfo(pathToFile);
-            //if (!dirInfo.Exists)
-            //{
-            //    dirInfo.Create();
-            //}
-            //string filename = $"{pathToFile}\\output.txt";
-
-            //using (FileStream fstream = new FileStream(filename, FileMode.OpenOrCreate))
-            //{
-            //    byte[] array = System.Text.Encoding.Default.GetBytes(sLog);
-            //    await fstream.WriteAsync(array, 0, array.Length);
-            //}
+            string data = "";
+            for (int i = 0; i < 5; i++)
+            {
+                data += Convert.ToString(this.trainList[i].getSetTrainNumber);
+                foreach (Station st in this.trainList[i].getSetStations)
+                {
+                    data += ' ' + st.stationName + ' ' + Convert.ToString(st.kilometersFromPrevious) +
+                        ' ' + Convert.ToString(st.timeOfArrival / 60) + ':' + Convert.ToString(st.timeOfArrival % 60) +
+                        ' ' + Convert.ToString(st.timeOfDeparture / 60) + ':' + Convert.ToString(st.timeOfDeparture % 60) + '\n';
+                }
+            }
+            return data;
         }
 
-        
+        public async void writeToFile()
+        {
+            string sData = formDataForWritingToFile();
+            string pathToFile = GlobalVariables.fileNameToSave;
+            DirectoryInfo dirInfo = new DirectoryInfo(pathToFile);
+            if (!dirInfo.Exists)
+            {
+                dirInfo.Create();
+            }
+            string filename = $"{pathToFile}\\output.txt";
+
+            using (FileStream fstream = new FileStream(filename, FileMode.OpenOrCreate))
+            {
+                byte[] array = System.Text.Encoding.Default.GetBytes(sData);
+                await fstream.WriteAsync(array, 0, array.Length);
+            }
+        }
+
     }
 }

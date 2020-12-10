@@ -19,6 +19,7 @@ namespace BL
             trainNumber = number;
             stations = new List<Station>(stationNames.Count);
             addStations(stationNames, kilometers, timesOfArrival, timesOfDeparture);
+            getAverageSpeed();
         }
         public Train(Train train)
         {

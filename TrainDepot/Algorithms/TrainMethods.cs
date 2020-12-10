@@ -10,21 +10,27 @@ namespace BL
     public partial class Train : IComparable<Train>
     {
         private List<Station> stations;
-        private int trainNumber;
-        private double avgSpeed;
-        public int getSetTrainNumber
-        {
-            private set { trainNumber = value; }
-            get { return trainNumber; }
-        }
         public List<Station> getSetStations
         {
             set { stations = value; }
             get { return stations; }
         }
-
+        private int trainNumber;
+        public int getSetTrainNumber
+        {
+            private set { trainNumber = value; }
+            get { return trainNumber; }
+        }
+        private double avgSpeed;
+        public double getSetAvgSpeed
+        {
+            private set { avgSpeed = value; }
+            get { return avgSpeed; }
+        }
+        
         public void getAverageSpeed()
         {
+            avgSpeed = 0;
             double[] speedOnEach = new double[stations.Count];    
             for (int i = 1; i < stations.Count; i++)
             {
@@ -37,14 +43,12 @@ namespace BL
                 }
                 foreach (double sp in speedOnEach)
                     avgSpeed += sp;
-                this.avgSpeed /= speedOnEach.Length;
+                avgSpeed /= speedOnEach.Length;
             }
         }
 
         private void addStations(List<string> stationNames, List<int> kilometers, List<int> timesOfArrival, List<int> timesOfDeparture)
         {
-            // check for empty array
-
             for (int i = 0; i < stationNames.Count; ++i)
             {
                 Station sStation =
@@ -52,39 +56,23 @@ namespace BL
                 stations.Add(sStation);
             }
         }
-
-        /*
-         How to generate a list of
-        private void generateStations (int* stationsPlaces, int size, someRandomGenerator &generator)
-        {
-            for (int i = 0; i < size; ++i)
-            {
-                int j = generator.generate() % (i + 1);
-                arr[i] = arr[j];
-                arr[j] = i;
-            }
-        }
-        */
-
         public int CompareTo(Train other)
         {
             return this.avgSpeed.CompareTo(other.avgSpeed);
         }
 
-        public static bool operator >=(Train T1, Train T2) => String.Compare(T1.stations.First().stationName, T2.stations.First().stationName) < 0 ? true : false;
-        public static bool operator <=(Train T1, Train T2) => String.Compare(T1.stations.First().stationName, T2.stations.First().stationName) > 0 ? true : false;
-
-        // Implement access to initial/final station
-        // or give access directly to field "stations" 
-
+        public static bool operator >=(Train T1, Train T2) => 
+            String.Compare(T1.stations.First().stationName, T2.stations.First().stationName) < 0 ? true : false;
+        public static bool operator <=(Train T1, Train T2) =>
+            String.Compare(T1.stations.First().stationName, T2.stations.First().stationName) > 0 ? true : false;
     }
 
     public static class GlobalVariables
     {
         public static int NumOfMinutesInDay = 1440;
         public static int NumOfMinutesInHour = 60;
-        public static string fileNameToOpen;
-        public static string fileNameToSave;
+        public static int numOfHoursInDay = 24;
+        public static string fileNameToSave = @"C:\\Users\\Yaroslav\\Desktop\\other\\student\\2nd_course\\OOP";
         public static int systemTableInit = 0;
     }
 

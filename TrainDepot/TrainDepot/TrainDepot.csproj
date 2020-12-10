@@ -52,6 +52,25 @@
     <Compile Include="AddTrain.Designer.cs">
       <DependentUpon>AddTrain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Exceptions.cs" />
+    <Compile Include="FindByStation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FindByStation.Designer.cs">
+      <DependentUpon>FindByStation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FindByStationAndArrivalTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FindByStationAndArrivalTime.Designer.cs">
+      <DependentUpon>FindByStationAndArrivalTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FindByStationAndDepartureTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FindByStationAndDepartureTime.Designer.cs">
+      <DependentUpon>FindByStationAndDepartureTime.cs</DependentUpon>
+    </Compile>
     <Compile Include="WorkForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +83,15 @@
     <EmbeddedResource Include="AddTrain.resx">
       <DependentUpon>AddTrain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FindByStation.resx">
+      <DependentUpon>FindByStation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FindByStationAndArrivalTime.resx">
+      <DependentUpon>FindByStationAndArrivalTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FindByStationAndDepartureTime.resx">
+      <DependentUpon>FindByStationAndDepartureTime.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WorkForm.resx">
       <DependentUpon>WorkForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -75,6 +103,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -94,6 +123,12 @@
       <Project>{941ab63b-31f3-4e6f-b1f3-e05bbab661eb}</Project>
       <Name>BL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\79-791453_pictures-texture-gray-blue-pattern-wallpaper-background-cobalt.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
