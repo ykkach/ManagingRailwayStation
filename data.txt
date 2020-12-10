@@ -1,5 +1,5 @@
-234562 HotenSchmitz 56 12:45 13:10 Zoe 19 13:25 13:35 Sequantic 31 14:11 14:14 Liberty 56 15:15 15:30 Hisuto 21 15:55 16:10,
-245273 Simba 0 12:35 12:55 Zoe 18 13:34 13:40 Comanche 24 14:10 14:15 Limbergen 33 14:41 14:51 Dari 28 15:25 15:35,
-246791 WasserHatt 0 12:45 13:00 Zoe 10 13:20 13:30 Comanche 24 13:55 14:10 Timberland 28 14:45 15:18 Hokashi 15 15:23 15:40,
-227701 Diore -12 12:35 12:54 Nisecudo 52 13:34 13:45 Seikura 24 14:10 14:15 Limbergen 33 14:41 14:51 Dari 28 15:25 15:35,
-132435 WasserHatt 0 12:35 12:55 Comanche 32 13:15 13:25 Limbergen 24 13:55 14:05 Hisuto 33 14:15 14:51 Liberty 21 15:31 15:41
+234562 HotenSchmitz 56 12:45 13:10 Zoe 19 13:50 14:35 Sequantic 31 15:11 15:14 Liberty 56 16:15 16:30 Hisuto 21 17:15 17:20,
+245273 Simba 34 12:35 12:55 Zoe 18 13:34 13:40 Comanche 24 14:10 14:15 Limbergen 33 14:41 14:51 Dari 28 15:25 15:35,
+246791 WasserHatt 32 12:45 13:00 Zoe 10 13:20 13:30 Comanche 24 13:55 14:10 Timberland 28 14:45 15:18 Hokashi 15 15:23 15:40,
+227701 Diore 12 12:35 12:54 Nisecudo 52 13:34 13:45 Seikura 24 14:10 14:15 Limbergen 33 14:41 14:51 Dari 28 15:25 15:35,
+132435 WasserHatt 33 12:35 12:55 Comanche 32 13:15 13:25 Limbergen 24 13:55 14:05 Hisuto 33 14:15 14:51 Liberty 21 15:31 15:41

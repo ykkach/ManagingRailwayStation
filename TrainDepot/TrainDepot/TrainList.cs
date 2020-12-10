@@ -121,6 +121,17 @@ namespace TrainDepot
             return 0;
         }
 
+        public int checkTimeCorrectness(int distance, int arrivalHours, int arrivalMinutes, int departureHours, int departureMinutes)
+        {
+            if (departureHours * GlobalVariables.NumOfMinutesInHour + departureMinutes == arrivalHours * GlobalVariables.NumOfMinutesInHour + arrivalMinutes)
+                return -1;
+           // else if (departureHours * GlobalVariables.NumOfMinutesInHour + departureMinutes - (arrivalHours * GlobalVariables.NumOfMinutesInHour + arrivalMinutes) < 15 && distance >= 5)
+                //return -1;
+            //else if (distance / (departureHours * GlobalVariables.NumOfMinutesInHour + departureMinutes - (arrivalHours * GlobalVariables.NumOfMinutesInHour + arrivalMinutes)) > 160)
+              //  return -1;
+            return 0;
+        }
+
         public int checkForInvalidInput(string[] data)
         {
             foreach (string el in data)
@@ -168,7 +179,6 @@ namespace TrainDepot
                     ex is OverflowException ||
                     ex is NegativeValuePassedException ||
                     ex is IncorrectTimeException)
-
                 {
                     return -1;
                 }
@@ -215,6 +225,16 @@ namespace TrainDepot
                     ldepartures.Clear();
                 }
             }
+            for (int i = 0; i < trainList.Count; i++)
+                for(int k = 0; k < trainList[0].getSetStations.Count; k++)
+                    if (k != trainList[0].getSetStations.Count - 1)
+                        if (checkTimeCorrectness(trainList[i].getSetStations[k + 1].kilometersFromPrevious,
+                             trainList[i].getSetStations[k].timeOfDeparture / 60,
+                             trainList[i].getSetStations[k].timeOfDeparture % 60,
+                             trainList[i].getSetStations[k + 1].timeOfArrival / 60,
+                             trainList[i].getSetStations[k + 1].timeOfArrival % 60) != 0)
+                            return -1;
+
             return 0;
         }
         public void addToDataGrid(ref DataGridView trainTable)
@@ -272,7 +292,7 @@ namespace TrainDepot
         private string formDataForWritingToFile()
         {
             string data = "";
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < trainList.Count; i++)
             {
                 data += Convert.ToString(this.trainList[i].getSetTrainNumber);
                 foreach (Station st in this.trainList[i].getSetStations)

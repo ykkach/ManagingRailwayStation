@@ -56,6 +56,18 @@ namespace BL
                 stations.Add(sStation);
             }
         }
+
+        public override bool Equals(object o)
+        {
+            if (((Train)o).getSetStations[getSetStations.Count - 1].stationName == this.getSetStations[getSetStations.Count - 1].stationName &&
+                ((Train)o).getSetStations[1].stationName == this.getSetStations[1].stationName &&
+                ((Train)o).getSetStations[2].stationName == this.getSetStations[2].stationName &&
+                ((Train)o).getSetStations[3].stationName == this.getSetStations[3].stationName)
+                return true;
+            else
+                return false;
+        }
+
         public int CompareTo(Train other)
         {
             return this.avgSpeed.CompareTo(other.avgSpeed);

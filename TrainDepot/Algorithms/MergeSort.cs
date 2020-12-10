@@ -113,7 +113,7 @@ namespace BL
                     }
                     else
                     {
-                        if(String.Compare(left.First().getSetStations[4].stationName, right.First().getSetStations[4].stationName) == 0)
+                        if(Equals(left.First(), right.First()))
                         {
                             result.Add(left.First());
                             left.Remove(left.First());
