@@ -6,7 +6,7 @@ namespace BL
 {
     public class MergeSort
     {
-
+        // Sort list by the name of initial station
         public List<Train> sortByFStation(List<Train> unsorted)
         {
             if (unsorted.Count < 2)
@@ -30,6 +30,7 @@ namespace BL
             return Merge(left, right, 1);
         }
 
+        // Sort list by average speed of train
         public List<Train> sortBySpeed(List<Train> unsorted)
         {
             if (unsorted.Count < 2)
@@ -53,6 +54,8 @@ namespace BL
             return Merge(left, right, 0);
         }
 
+        // Group records in list with similar intermediate
+        // and final stations names
         public List<Train> groupByLStation(List<Train> unsorted)
         {
             if (unsorted.Count < 2)
@@ -100,7 +103,7 @@ namespace BL
                     }
                     else if (flag == 1)
                     { 
-                        if (left.First() <= right.First())
+                        if (left.First() > right.First())
                         {
                             result.Add(left.First());
                             left.Remove(left.First());
@@ -139,6 +142,4 @@ namespace BL
             return result;
         }
     }
-
-
 }

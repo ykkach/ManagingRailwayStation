@@ -52,6 +52,12 @@
     <Compile Include="AddTrain.Designer.cs">
       <DependentUpon>AddTrain.cs</DependentUpon>
     </Compile>
+    <Compile Include="EmailSender.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmailSender.Designer.cs">
+      <DependentUpon>EmailSender.cs</DependentUpon>
+    </Compile>
     <Compile Include="Exceptions.cs" />
     <Compile Include="FindByStation.cs">
       <SubType>Form</SubType>
@@ -82,6 +88,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AddTrain.resx">
       <DependentUpon>AddTrain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmailSender.resx">
+      <DependentUpon>EmailSender.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FindByStation.resx">
       <DependentUpon>FindByStation.cs</DependentUpon>

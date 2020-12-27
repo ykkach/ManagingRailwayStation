@@ -30,17 +30,17 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WorkForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             this.saveFile = new System.Windows.Forms.SaveFileDialog();
             this.openFile = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -56,6 +56,7 @@
             this.findTrainByTimeOfArrivalToTheStationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.findTrainByTimeOfDepartureFromTheStationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupByLastStationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
@@ -64,16 +65,16 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.logLine = new System.Windows.Forms.Label();
             this.trainDataTable = new System.Windows.Forms.DataGridView();
-            this.finalStation = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.km4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.station4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.km3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.station3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.km2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.station = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.km1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.initStation = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.initStation = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.km1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.station = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.km2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.station3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.km3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.station4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.km4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.finalStation = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
@@ -86,7 +87,8 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.editToolStripMenuItem});
+            this.editToolStripMenuItem,
+            this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1748, 33);
@@ -163,7 +165,7 @@
             // 
             this.findNumberOfSpecificTrainsToolStripMenuItem.Name = "findNumberOfSpecificTrainsToolStripMenuItem";
             this.findNumberOfSpecificTrainsToolStripMenuItem.Size = new System.Drawing.Size(490, 34);
-            this.findNumberOfSpecificTrainsToolStripMenuItem.Text = "Get number of trains with station";
+            this.findNumberOfSpecificTrainsToolStripMenuItem.Text = "Find train by station";
             this.findNumberOfSpecificTrainsToolStripMenuItem.Click += new System.EventHandler(this.findNumberOfSpecificTrainsToolStripMenuItem_Click);
             // 
             // findTrainByTimeOfArrivalToTheStationToolStripMenuItem
@@ -184,8 +186,15 @@
             // 
             this.groupByLastStationToolStripMenuItem.Name = "groupByLastStationToolStripMenuItem";
             this.groupByLastStationToolStripMenuItem.Size = new System.Drawing.Size(490, 34);
-            this.groupByLastStationToolStripMenuItem.Text = "Group by last station";
+            this.groupByLastStationToolStripMenuItem.Text = "Group by stations\' names";
             this.groupByLastStationToolStripMenuItem.Click += new System.EventHandler(this.groupByLastStationToolStripMenuItem_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(65, 29);
+            this.helpToolStripMenuItem.Text = "Help";
+            this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
             // bindingNavigator1
             // 
@@ -274,14 +283,14 @@
             this.trainDataTable.AllowUserToResizeRows = false;
             this.trainDataTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.trainDataTable.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle34.BackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle34.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            dataGridViewCellStyle34.ForeColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle34.SelectionBackColor = System.Drawing.Color.LightSteelBlue;
-            dataGridViewCellStyle34.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle34.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.trainDataTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle34;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.LightSteelBlue;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.trainDataTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.trainDataTable.ColumnHeadersHeight = 60;
             this.trainDataTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.number,
@@ -306,120 +315,120 @@
             this.trainDataTable.TabIndex = 4;
             this.trainDataTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.trainDataTable_CellContentClick);
             // 
-            // finalStation
+            // number
             // 
-            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle44.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle44.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.finalStation.DefaultCellStyle = dataGridViewCellStyle44;
-            this.finalStation.HeaderText = "       Final station";
-            this.finalStation.MinimumWidth = 8;
-            this.finalStation.Name = "finalStation";
-            this.finalStation.ReadOnly = true;
-            // 
-            // km4
-            // 
-            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle43.BackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle43.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle43.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.km4.DefaultCellStyle = dataGridViewCellStyle43;
-            this.km4.HeaderText = "    -";
-            this.km4.MinimumWidth = 8;
-            this.km4.Name = "km4";
-            this.km4.ReadOnly = true;
-            // 
-            // station4
-            // 
-            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle42.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle42.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.station4.DefaultCellStyle = dataGridViewCellStyle42;
-            this.station4.HeaderText = "              Station";
-            this.station4.MinimumWidth = 8;
-            this.station4.Name = "station4";
-            this.station4.ReadOnly = true;
-            // 
-            // km3
-            // 
-            dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle41.BackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle41.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle41.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.km3.DefaultCellStyle = dataGridViewCellStyle41;
-            this.km3.HeaderText = "    -";
-            this.km3.MinimumWidth = 8;
-            this.km3.Name = "km3";
-            this.km3.ReadOnly = true;
-            // 
-            // station3
-            // 
-            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle40.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle40.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.station3.DefaultCellStyle = dataGridViewCellStyle40;
-            this.station3.HeaderText = "              Station";
-            this.station3.MinimumWidth = 8;
-            this.station3.Name = "station3";
-            this.station3.ReadOnly = true;
-            // 
-            // km2
-            // 
-            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle39.BackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle39.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle39.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.km2.DefaultCellStyle = dataGridViewCellStyle39;
-            this.km2.HeaderText = "    -";
-            this.km2.MinimumWidth = 8;
-            this.km2.Name = "km2";
-            this.km2.ReadOnly = true;
-            // 
-            // station
-            // 
-            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle38.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle38.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.station.DefaultCellStyle = dataGridViewCellStyle38;
-            this.station.HeaderText = "              Station";
-            this.station.MinimumWidth = 8;
-            this.station.Name = "station";
-            this.station.ReadOnly = true;
-            // 
-            // km1
-            // 
-            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle37.BackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle37.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle37.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.km1.DefaultCellStyle = dataGridViewCellStyle37;
-            this.km1.HeaderText = "    -";
-            this.km1.MinimumWidth = 8;
-            this.km1.Name = "km1";
-            this.km1.ReadOnly = true;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.number.DefaultCellStyle = dataGridViewCellStyle2;
+            this.number.HeaderText = " Train number";
+            this.number.MinimumWidth = 8;
+            this.number.Name = "number";
+            this.number.ReadOnly = true;
             // 
             // initStation
             // 
-            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle36.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle36.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.initStation.DefaultCellStyle = dataGridViewCellStyle36;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.initStation.DefaultCellStyle = dataGridViewCellStyle3;
             this.initStation.HeaderText = "       Initial station";
             this.initStation.MinimumWidth = 8;
             this.initStation.Name = "initStation";
             this.initStation.ReadOnly = true;
             // 
-            // number
+            // km1
             // 
-            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle35.BackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle35.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle35.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.number.DefaultCellStyle = dataGridViewCellStyle35;
-            this.number.HeaderText = " Train number";
-            this.number.MinimumWidth = 8;
-            this.number.Name = "number";
-            this.number.ReadOnly = true;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.km1.DefaultCellStyle = dataGridViewCellStyle4;
+            this.km1.HeaderText = "    -";
+            this.km1.MinimumWidth = 8;
+            this.km1.Name = "km1";
+            this.km1.ReadOnly = true;
+            // 
+            // station
+            // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.station.DefaultCellStyle = dataGridViewCellStyle5;
+            this.station.HeaderText = "              Station";
+            this.station.MinimumWidth = 8;
+            this.station.Name = "station";
+            this.station.ReadOnly = true;
+            // 
+            // km2
+            // 
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.km2.DefaultCellStyle = dataGridViewCellStyle6;
+            this.km2.HeaderText = "    -";
+            this.km2.MinimumWidth = 8;
+            this.km2.Name = "km2";
+            this.km2.ReadOnly = true;
+            // 
+            // station3
+            // 
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.station3.DefaultCellStyle = dataGridViewCellStyle7;
+            this.station3.HeaderText = "              Station";
+            this.station3.MinimumWidth = 8;
+            this.station3.Name = "station3";
+            this.station3.ReadOnly = true;
+            // 
+            // km3
+            // 
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.km3.DefaultCellStyle = dataGridViewCellStyle8;
+            this.km3.HeaderText = "    -";
+            this.km3.MinimumWidth = 8;
+            this.km3.Name = "km3";
+            this.km3.ReadOnly = true;
+            // 
+            // station4
+            // 
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.station4.DefaultCellStyle = dataGridViewCellStyle9;
+            this.station4.HeaderText = "              Station";
+            this.station4.MinimumWidth = 8;
+            this.station4.Name = "station4";
+            this.station4.ReadOnly = true;
+            // 
+            // km4
+            // 
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.km4.DefaultCellStyle = dataGridViewCellStyle10;
+            this.km4.HeaderText = "    -";
+            this.km4.MinimumWidth = 8;
+            this.km4.Name = "km4";
+            this.km4.ReadOnly = true;
+            // 
+            // finalStation
+            // 
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.finalStation.DefaultCellStyle = dataGridViewCellStyle11;
+            this.finalStation.HeaderText = "       Final station";
+            this.finalStation.MinimumWidth = 8;
+            this.finalStation.Name = "finalStation";
+            this.finalStation.ReadOnly = true;
             // 
             // WorkForm
             // 
@@ -485,5 +494,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn station4;
         private System.Windows.Forms.DataGridViewTextBoxColumn km4;
         private System.Windows.Forms.DataGridViewTextBoxColumn finalStation;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
     }
 }

@@ -41,9 +41,9 @@
             // 
             this.submit.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.submit.Cursor = System.Windows.Forms.Cursors.Default;
-            this.submit.Location = new System.Drawing.Point(155, 208);
+            this.submit.Location = new System.Drawing.Point(323, 203);
             this.submit.Name = "submit";
-            this.submit.Size = new System.Drawing.Size(253, 68);
+            this.submit.Size = new System.Drawing.Size(181, 50);
             this.submit.TabIndex = 6;
             this.submit.Text = "Submit";
             this.submit.UseVisualStyleBackColor = false;
@@ -52,18 +52,19 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(121, 75);
+            this.label2.Location = new System.Drawing.Point(56, 74);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(287, 20);
+            this.label2.Size = new System.Drawing.Size(392, 25);
             this.label2.TabIndex = 23;
-            this.label2.Text = "to get information about trains matched";
+            this.label2.Text = "want to get information about trains matched";
             // 
             // time
             // 
             this.time.CustomFormat = "HH:mm";
             this.time.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.time.Location = new System.Drawing.Point(266, 151);
+            this.time.Location = new System.Drawing.Point(189, 149);
             this.time.Name = "time";
             this.time.ShowUpDown = true;
             this.time.Size = new System.Drawing.Size(151, 26);
@@ -74,7 +75,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(141, 124);
+            this.label3.Location = new System.Drawing.Point(75, 122);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(108, 20);
             this.label3.TabIndex = 19;
@@ -82,7 +83,7 @@
             // 
             // stationName
             // 
-            this.stationName.Location = new System.Drawing.Point(266, 118);
+            this.stationName.Location = new System.Drawing.Point(189, 116);
             this.stationName.Name = "stationName";
             this.stationName.Size = new System.Drawing.Size(151, 26);
             this.stationName.TabIndex = 20;
@@ -90,18 +91,19 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(86, 55);
+            this.label1.Location = new System.Drawing.Point(56, 49);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(375, 20);
+            this.label1.Size = new System.Drawing.Size(414, 25);
             this.label1.TabIndex = 22;
-            this.label1.Text = "Enter station name and arrival time in case you want";
+            this.label1.Text = "Enter station name and arrival time in case you";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(141, 156);
+            this.label4.Location = new System.Drawing.Point(75, 154);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(110, 20);
             this.label4.TabIndex = 21;
@@ -112,7 +114,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.ClientSize = new System.Drawing.Size(558, 310);
+            this.ClientSize = new System.Drawing.Size(528, 274);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.time);
             this.Controls.Add(this.label3);

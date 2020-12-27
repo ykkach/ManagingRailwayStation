@@ -37,18 +37,18 @@
             // 
             // stationName
             // 
-            this.stationName.Location = new System.Drawing.Point(242, 143);
+            this.stationName.Location = new System.Drawing.Point(60, 151);
             this.stationName.Name = "stationName";
-            this.stationName.Size = new System.Drawing.Size(151, 26);
+            this.stationName.Size = new System.Drawing.Size(228, 26);
             this.stationName.TabIndex = 0;
             // 
             // submit
             // 
             this.submit.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.submit.Cursor = System.Windows.Forms.Cursors.Default;
-            this.submit.Location = new System.Drawing.Point(150, 204);
+            this.submit.Location = new System.Drawing.Point(327, 212);
             this.submit.Name = "submit";
-            this.submit.Size = new System.Drawing.Size(218, 69);
+            this.submit.Size = new System.Drawing.Size(171, 47);
             this.submit.TabIndex = 1;
             this.submit.Text = "Submit";
             this.submit.UseVisualStyleBackColor = false;
@@ -57,25 +57,27 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(128, 62);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(56, 62);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(265, 20);
+            this.label1.Size = new System.Drawing.Size(324, 25);
             this.label1.TabIndex = 2;
             this.label1.Text = "Enter station name in case you want";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(118, 82);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(55, 87);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(291, 20);
+            this.label2.Size = new System.Drawing.Size(352, 25);
             this.label2.TabIndex = 3;
             this.label2.Text = "to get number of trains with such station";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(128, 146);
+            this.label3.Location = new System.Drawing.Point(56, 128);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(108, 20);
             this.label3.TabIndex = 4;
@@ -86,7 +88,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.ClientSize = new System.Drawing.Size(522, 310);
+            this.ClientSize = new System.Drawing.Size(522, 281);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);

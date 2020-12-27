@@ -15,3 +15,4 @@ C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\TrainDepot\obj
 C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\TrainDepot\obj\Debug\TrainDepot.FindByStation.resources
 C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\TrainDepot\obj\Debug\TrainDepot.FindByStationAndArrivalTime.resources
 C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\TrainDepot\obj\Debug\TrainDepot.FindByStationAndDepartureTime.resources
+C:\Users\Yaroslav\Desktop\other\student\2nd_course\OOP\TrainDepot\TrainDepot\obj\Debug\TrainDepot.EmailSender.resources

@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System;
 
 namespace BL
 {
     public partial class Train : IComparable<Train>
     {
+        //
+        // Stores information about each train
         public Train() : this(0)
         { }
         public Train(int number)
@@ -21,9 +20,19 @@ namespace BL
             addStations(stationNames, kilometers, timesOfArrival, timesOfDeparture);
             getAverageSpeed();
         }
-        public Train(Train train)
+        // Copying constructor
+        public Train(Object train)
         {
-            //copy fields
+            this.trainNumber = ((Train)train).trainNumber;
+            this.stations = new List<Station>(((Train)train).stations.Count);
+            for(int i = 0; i < ((Train)train).stations.Count; i++)
+            {
+                Station station = new Station(((Train)train).stations[i].stationName, 
+                    ((Train)train).stations[i].kilometersFromPrevious,
+                    ((Train)train).stations[i].timeOfArrival,
+                ((Train)train).stations[i].timeOfDeparture);
+                this.stations.Add(station);
+            }
         }
 
     }

@@ -41,9 +41,9 @@
             // 
             this.submit.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.submit.Cursor = System.Windows.Forms.Cursors.Default;
-            this.submit.Location = new System.Drawing.Point(168, 219);
+            this.submit.Location = new System.Drawing.Point(330, 210);
             this.submit.Name = "submit";
-            this.submit.Size = new System.Drawing.Size(227, 66);
+            this.submit.Size = new System.Drawing.Size(191, 52);
             this.submit.TabIndex = 13;
             this.submit.Text = "Submit";
             this.submit.UseVisualStyleBackColor = false;
@@ -53,7 +53,7 @@
             // 
             this.time.CustomFormat = "HH:mm";
             this.time.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.time.Location = new System.Drawing.Point(283, 154);
+            this.time.Location = new System.Drawing.Point(232, 150);
             this.time.Name = "time";
             this.time.ShowUpDown = true;
             this.time.Size = new System.Drawing.Size(151, 26);
@@ -63,7 +63,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(127, 159);
+            this.label4.Location = new System.Drawing.Point(88, 155);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(138, 20);
             this.label4.TabIndex = 24;
@@ -71,7 +71,7 @@
             // 
             // stationName
             // 
-            this.stationName.Location = new System.Drawing.Point(283, 124);
+            this.stationName.Location = new System.Drawing.Point(232, 123);
             this.stationName.Name = "stationName";
             this.stationName.Size = new System.Drawing.Size(151, 26);
             this.stationName.TabIndex = 23;
@@ -79,7 +79,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(127, 127);
+            this.label3.Location = new System.Drawing.Point(88, 126);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(108, 20);
             this.label3.TabIndex = 22;
@@ -88,27 +88,29 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(138, 81);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(54, 81);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(287, 20);
+            this.label2.Size = new System.Drawing.Size(392, 25);
             this.label2.TabIndex = 21;
-            this.label2.Text = "to get information about trains matched";
+            this.label2.Text = "want to get information about trains matched";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(85, 60);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(54, 56);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(403, 20);
+            this.label1.Size = new System.Drawing.Size(445, 25);
             this.label1.TabIndex = 20;
-            this.label1.Text = "Enter station name and departure time in case you want";
+            this.label1.Text = "Enter station name and departure time in case you";
             // 
             // FindByStationAndDepartureTime
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.ClientSize = new System.Drawing.Size(559, 319);
+            this.ClientSize = new System.Drawing.Size(552, 284);
             this.Controls.Add(this.time);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.stationName);

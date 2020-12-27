@@ -1,11 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+//
+// Custom exception classes for 
+// exception handling
+//
+
+using System;
 
 namespace TrainDepot
 {
+
+    // Exception to throw then negative value passing detected 
     [Serializable]
     public class NegativeValuePassedException : Exception
     {
@@ -15,6 +19,8 @@ namespace TrainDepot
             : base(message) { }
     }
 
+
+    // Exception to throw then incorrect time format detected 
     public class IncorrectTimeException : Exception
     {
         public IncorrectTimeException() { }
@@ -22,5 +28,5 @@ namespace TrainDepot
         public IncorrectTimeException(string message)
             : base(message) { }
     }
-
+     
 }

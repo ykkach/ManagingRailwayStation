@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using System.Text;
-using System.Runtime;
 using System.Text.RegularExpressions;
 using BL;
 
 
 namespace TrainDepot
 {
+
     public class TrainList
     {
+
+        // Stores list of trains and methods to 
+        // modify this list according to user 
+        // actions.
+
         private static readonly TrainList instance = new TrainList();
         public List<Train> trainList;
 
@@ -23,36 +25,45 @@ namespace TrainDepot
             trainList = new List<Train>();
         }
 
+        // Get static instance of TrainDepot
         public static TrainList getList()
         {
             return instance;
         }
 
+        // Add new record to list
         private void addTrain(Train train) => trainList.Add(train);
 
+        // Clear trainList
         public void clearList()
         {
             trainList.Clear();
         }
 
+        // Sort trainList by average speed of train
         public void sortBySpeed()
         {
             MergeSort mergeSort = new MergeSort();
             trainList = mergeSort.sortBySpeed(trainList);  
         }
 
-        public void sortByFStation()
+        // Sort trainList by name of initial station
+        public void sortByFirstStation()
         {
             MergeSort mergeSort = new MergeSort();
             trainList = mergeSort.sortByFStation(trainList); 
         }
 
-        public void groupByLStation()
+        // Group records that have similar intermediate
+        // and final station
+        public void groupByStationNames()
         {
             MergeSort mergeSort = new MergeSort();
             trainList = mergeSort.groupByLStation(trainList);
         }
 
+        // Get list of train numbers
+        // These trains must satisfy a condition below
         public List<int> getTrainsByStationArrival(string station, int timeOfArrival)
         {
             List<int> trainNumbers = new List<int>();
@@ -63,6 +74,8 @@ namespace TrainDepot
             return trainNumbers;
         }
 
+        // Get list of train numbers
+        // These trains must satisfy a condition below
         public List<int> getTrainsByStationDeparture(string station, int timeOfDeparture)
         {
             List<int> trainNumbers = new List<int>();
@@ -73,7 +86,9 @@ namespace TrainDepot
             return trainNumbers;
         }
 
-        public List<int> getNumberOfRoutesWithStation(String station)
+        // Get list of train numbers
+        // These trains must satisfy a condition below
+        public List<int> getTrainsByStation(String station)
         {
             List<int> trainNumbers = new List<int>();
             foreach (Train train in trainList)
@@ -83,6 +98,7 @@ namespace TrainDepot
             return trainNumbers;
         }
 
+        // Add new record to trainList with data passed
         public int parseDataSingleRecord(string data)
         {
             if (String.IsNullOrEmpty(data))
@@ -101,8 +117,8 @@ namespace TrainDepot
                 
                 if(checkForInvalidInput(parsedData) != 0)
                     return -1;
-
                 ltrainNumber = Convert.ToInt32(parsedData[0]);
+   
                 for (int k = 0; k < parsedData.Length - 1;)
                 {
                     lstations.Add(parsedData[++k]);
@@ -117,11 +133,23 @@ namespace TrainDepot
                 larrivals.Clear();
                 ldepartures.Clear();
             }
-
+            for (int i = 0; i < trainList.Count; i++)
+                for (int k = 0; k < trainList[0].getSetStations.Count; k++)
+                    if (k != trainList[0].getSetStations.Count - 1)
+                        if (checkTimeCorrectness(trainList[i].getSetStations[k + 1].kilometersFromPrevious,
+                             trainList[i].getSetStations[k].timeOfDeparture / GlobalVariables.NumOfMinutesInHour,
+                             trainList[i].getSetStations[k].timeOfDeparture % GlobalVariables.NumOfMinutesInHour,
+                             trainList[i].getSetStations[k + 1].timeOfArrival / GlobalVariables.NumOfMinutesInHour,
+                             trainList[i].getSetStations[k + 1].timeOfArrival % GlobalVariables.NumOfMinutesInHour) != 0)
+                        {
+                            trainList.RemoveAt(trainList.Count - 1);
+                            return -1;
+                        }
             return 0;
         }
 
-        public int checkTimeCorrectness(int distance, int arrivalHours, int arrivalMinutes, int departureHours, int departureMinutes)
+        // Check if correct time was passed
+        private int checkTimeCorrectness(int distance, int arrivalHours, int arrivalMinutes, int departureHours, int departureMinutes)
         {
             if (departureHours * GlobalVariables.NumOfMinutesInHour + departureMinutes == arrivalHours * GlobalVariables.NumOfMinutesInHour + arrivalMinutes)
                 return -1;
@@ -132,7 +160,8 @@ namespace TrainDepot
             return 0;
         }
 
-        public int checkForInvalidInput(string[] data)
+        // Check if there was invalid data passed
+        private int checkForInvalidInput(string[] data)
         {
             foreach (string el in data)
                 if (String.IsNullOrEmpty(el))
@@ -186,6 +215,7 @@ namespace TrainDepot
             return 0;
         }
 
+        // Add number of records to trainList
         public int parseDataFromFile(string data)
         {
             int ltrainNumber = 0;
@@ -229,66 +259,16 @@ namespace TrainDepot
                 for(int k = 0; k < trainList[0].getSetStations.Count; k++)
                     if (k != trainList[0].getSetStations.Count - 1)
                         if (checkTimeCorrectness(trainList[i].getSetStations[k + 1].kilometersFromPrevious,
-                             trainList[i].getSetStations[k].timeOfDeparture / 60,
-                             trainList[i].getSetStations[k].timeOfDeparture % 60,
-                             trainList[i].getSetStations[k + 1].timeOfArrival / 60,
-                             trainList[i].getSetStations[k + 1].timeOfArrival % 60) != 0)
+                             trainList[i].getSetStations[k].timeOfDeparture / GlobalVariables.NumOfMinutesInHour,
+                             trainList[i].getSetStations[k].timeOfDeparture % GlobalVariables.NumOfMinutesInHour,
+                             trainList[i].getSetStations[k + 1].timeOfArrival / GlobalVariables.NumOfMinutesInHour,
+                             trainList[i].getSetStations[k + 1].timeOfArrival % GlobalVariables.NumOfMinutesInHour) != 0)
                             return -1;
 
             return 0;
         }
-        public void addToDataGrid(ref DataGridView trainTable)
-        {
-            while (trainTable.Rows.Count > 0)
-                trainTable.Rows.Remove(trainTable.Rows[0]);
 
-            foreach (Train train in trainList)
-            {
-                trainTable.Rows.Add(
-                    new object[]
-                    {
-                        Convert.ToString(train.getSetTrainNumber),
-                       train.getSetStations[0].stationName +  " | " +
-                       (train.getSetStations[0].timeOfArrival/60).ToString("00") + ':'
-                       + (train.getSetStations[0].timeOfArrival%60).ToString("00") + '-' +
-                       (train.getSetStations[0].timeOfDeparture/60).ToString("00") + ':'
-                       + (train.getSetStations[0].timeOfDeparture%60).ToString("00"),
-
-                       Convert.ToString(train.getSetStations[1].kilometersFromPrevious),
-
-                       train.getSetStations[1].stationName + " | " +
-                       (train.getSetStations[1].timeOfArrival/60).ToString("00") + ':' 
-                       + (train.getSetStations[1].timeOfArrival%60).ToString("00") + '-' +
-                       (train.getSetStations[1].timeOfDeparture/60).ToString("00") + ':' 
-                       + (train.getSetStations[1].timeOfDeparture%60).ToString("00"),
-
-                       Convert.ToString(train.getSetStations[2].kilometersFromPrevious),
-
-                       train.getSetStations[2].stationName + " | " +
-                       (train.getSetStations[2].timeOfArrival/60).ToString("00") + ':' 
-                       + (train.getSetStations[2].timeOfArrival%60).ToString("00") + '-' +
-                       (train.getSetStations[2].timeOfDeparture/60).ToString("00") + ':' 
-                       + (train.getSetStations[2].timeOfDeparture%60).ToString("00"),
-
-                       Convert.ToString(train.getSetStations[3].kilometersFromPrevious),
-
-                       train.getSetStations[3].stationName + " | " +
-                       (train.getSetStations[3].timeOfArrival/60).ToString("00") + ':'
-                       + (train.getSetStations[3].timeOfArrival%60).ToString("00") + '-' +
-                       (train.getSetStations[3].timeOfDeparture/60).ToString("00") + ':'
-                       + (train.getSetStations[3].timeOfDeparture%60).ToString("00"),
-
-                       Convert.ToString(train.getSetStations[4].kilometersFromPrevious),
-
-                       train.getSetStations[4].stationName + " | " +
-                       (train.getSetStations[4].timeOfArrival/60).ToString("00") + ':' 
-                       + (train.getSetStations[4].timeOfArrival%60).ToString("00") + '-' +
-                       (train.getSetStations[4].timeOfDeparture/60).ToString("00") + ':'
-                       + (train.getSetStations[4].timeOfDeparture%60).ToString("00")
-                    });
-            }
-        }
-
+        // Form string of data for writing to file
         private string formDataForWritingToFile()
         {
             string data = "";
@@ -298,13 +278,16 @@ namespace TrainDepot
                 foreach (Station st in this.trainList[i].getSetStations)
                 {
                     data += ' ' + st.stationName + ' ' + Convert.ToString(st.kilometersFromPrevious) +
-                        ' ' + Convert.ToString(st.timeOfArrival / 60) + ':' + Convert.ToString(st.timeOfArrival % 60) +
-                        ' ' + Convert.ToString(st.timeOfDeparture / 60) + ':' + Convert.ToString(st.timeOfDeparture % 60) + '\n';
+                        ' ' + Convert.ToString(st.timeOfArrival / GlobalVariables.NumOfMinutesInHour) + 
+                        ':' + Convert.ToString(st.timeOfArrival % GlobalVariables.NumOfMinutesInHour) +
+                        ' ' + Convert.ToString(st.timeOfDeparture / GlobalVariables.NumOfMinutesInHour) +
+                        ':' + Convert.ToString(st.timeOfDeparture % GlobalVariables.NumOfMinutesInHour) + '\n';
                 }
             }
             return data;
         }
 
+        // Write data to file
         public async void writeToFile()
         {
             string sData = formDataForWritingToFile();
@@ -320,6 +303,59 @@ namespace TrainDepot
             {
                 byte[] array = System.Text.Encoding.Default.GetBytes(sData);
                 await fstream.WriteAsync(array, 0, array.Length);
+            }
+        }
+
+        // Add trainList to train table
+        public void addToDataGrid(ref DataGridView trainTable)
+        {
+            while (trainTable.Rows.Count > 0)
+                trainTable.Rows.Remove(trainTable.Rows[0]);
+
+            foreach (Train train in trainList)
+            {
+                trainTable.Rows.Add(
+                    new object[]
+                    {
+                        Convert.ToString(train.getSetTrainNumber),
+                       train.getSetStations[0].stationName +  " | " +
+                       (train.getSetStations[0].timeOfArrival/GlobalVariables.NumOfMinutesInHour).ToString("00") + ':'
+                       + (train.getSetStations[0].timeOfArrival%GlobalVariables.NumOfMinutesInHour).ToString("00") + '-' +
+                       (train.getSetStations[0].timeOfDeparture/GlobalVariables.NumOfMinutesInHour).ToString("00") + ':'
+                       + (train.getSetStations[0].timeOfDeparture%GlobalVariables.NumOfMinutesInHour).ToString("00"),
+
+                       Convert.ToString(train.getSetStations[1].kilometersFromPrevious),
+
+                       train.getSetStations[1].stationName + " | " +
+                       (train.getSetStations[1].timeOfArrival/GlobalVariables.NumOfMinutesInHour).ToString("00") + ':' 
+                       + (train.getSetStations[1].timeOfArrival%GlobalVariables.NumOfMinutesInHour).ToString("00") + '-' +
+                       (train.getSetStations[1].timeOfDeparture/GlobalVariables.NumOfMinutesInHour).ToString("00") + ':' 
+                       + (train.getSetStations[1].timeOfDeparture%GlobalVariables.NumOfMinutesInHour).ToString("00"),
+
+                       Convert.ToString(train.getSetStations[2].kilometersFromPrevious),
+
+                       train.getSetStations[2].stationName + " | " +
+                       (train.getSetStations[2].timeOfArrival/GlobalVariables.NumOfMinutesInHour).ToString("00") + ':' 
+                       + (train.getSetStations[2].timeOfArrival%GlobalVariables.NumOfMinutesInHour).ToString("00") + '-' +
+                       (train.getSetStations[2].timeOfDeparture/GlobalVariables.NumOfMinutesInHour).ToString("00") + ':' 
+                       + (train.getSetStations[2].timeOfDeparture%GlobalVariables.NumOfMinutesInHour).ToString("00"),
+
+                       Convert.ToString(train.getSetStations[3].kilometersFromPrevious),
+
+                       train.getSetStations[3].stationName + " | " +
+                       (train.getSetStations[3].timeOfArrival/GlobalVariables.NumOfMinutesInHour).ToString("00") + ':'
+                       + (train.getSetStations[3].timeOfArrival%GlobalVariables.NumOfMinutesInHour).ToString("00") + '-' +
+                       (train.getSetStations[3].timeOfDeparture/GlobalVariables.NumOfMinutesInHour).ToString("00") + ':'
+                       + (train.getSetStations[3].timeOfDeparture%GlobalVariables.NumOfMinutesInHour).ToString("00"),
+
+                       Convert.ToString(train.getSetStations[4].kilometersFromPrevious),
+
+                       train.getSetStations[4].stationName + " | " +
+                       (train.getSetStations[4].timeOfArrival/GlobalVariables.NumOfMinutesInHour).ToString("00") + ':' 
+                       + (train.getSetStations[4].timeOfArrival%GlobalVariables.NumOfMinutesInHour).ToString("00") + '-' +
+                       (train.getSetStations[4].timeOfDeparture/GlobalVariables.NumOfMinutesInHour).ToString("00") + ':'
+                       + (train.getSetStations[4].timeOfDeparture%GlobalVariables.NumOfMinutesInHour).ToString("00")
+                    });
             }
         }
 
